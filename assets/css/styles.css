@@ -93,6 +93,10 @@ a {
   right: 24px;
 }
 
+.header-nav {
+  gap: 2vw;
+}
+
 .title img {
   padding-right: 8px;
   height: 30px;
@@ -101,6 +105,7 @@ a {
 
 .flex-row {
   display: flex;
+  align-items: center;
 }
 
 .signup {
@@ -153,3 +158,5 @@ a {
   padding: 7rem;
   background-color: white;
 }
+
+/* About */
