@@ -2,28 +2,28 @@ import http from "http";
 import fs from "fs";
 import path from "path";
 
-// Funktion zum Senden von Dateien an den Client
+// funktion zum Senden von Dateien an den Client
 const sendFile = (filePath, res) => {
-  // Lese den Inhalt der Datei am angegebenen Pfad
+  // lese den Inhalt der Datei am angegebenen Pfad
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.end("Interner Serverfehler");
       return;
     }
 
-    // Bestimme den Inhaltstyp anhand der Dateierweiterung
+    // bestimme den Inhaltstyp anhand der Dateierweiterung
     const ext = path.extname(filePath).toLowerCase();
-    let contentType = "text/html"; // Standardmäßig HTML
+    let contentType = "text/html"; // Standard HTML
 
     if (ext === ".svg") {
-      contentType = "image/svg+xml";
+      contentType = "image/svg+xml"; //svg
     } else if (ext === ".css") {
-      contentType = "text/css";
+      contentType = "text/css"; //css
     } else if (ext === ".ttf") {
       contentType = "font/ttf"; //Fonts
     }
 
-    // Setze den Antwortheader mit dem Inhaltsverzeichnis
+    // gebe die Antwortheader entsprechen  den datentyp von oben
     res.writeHead(200, { "Content-Type": contentType });
 
     res.end(data);
@@ -32,7 +32,6 @@ const sendFile = (filePath, res) => {
 
 // Funktion für die Verarbeitung von HTTP-Anfragen
 const requestHandler = (req, res) => {
-  // Gib die URL der Anfrage in der Konsole aus
   console.log(req.url);
 
   // Baue den Dateipfad für die angeforderte Datei
