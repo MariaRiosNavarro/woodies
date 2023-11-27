@@ -144,3 +144,12 @@ a {
   font-family: nunito-bold, helvetica, sans-serif, Arial;
   font-weight: 800;
 }
+
+/* All Pages */
+
+:is:not(.home-wrapper) {
+  max-width: 100vw;
+  max-height: 100vh;
+  padding: 7rem;
+  background-color: white;
+}
