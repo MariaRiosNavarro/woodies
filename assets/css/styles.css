@@ -6,13 +6,13 @@
 
 @font-face {
   font-family: nunito;
-  src: url("/assets/fonts/Nunito/static/Nunito-Regular.ttf");
+  src: url("../fonts/Nunito/Nunito-VariableFont_wght.ttf");
 }
 
-@font-face {
+/* @font-face {
   font-family: nunito-bold;
   src: url("/assets/fonts/Nunito/static/Nunito-Bold.ttf");
-}
+} */
 
 img {
   max-width: 100%;
@@ -140,13 +140,11 @@ a {
 }
 
 .bold {
-  font-family: nunito-bold, helvetica, sans-serif, Arial;
   font-weight: 800;
 }
 
 .selected {
   color: #daa520;
-  font-family: nunito-bold, helvetica, sans-serif, Arial;
   font-weight: 800;
 }
 

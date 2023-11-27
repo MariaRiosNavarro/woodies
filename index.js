@@ -1,23 +1,31 @@
-// Importiere das HTTP-Modul
 import http from "http";
-// Importiere das File System-Modul
 import fs from "fs";
+import path from "path";
 
 // Funktion zum Senden von Dateien an den Client
-const sendFile = (path, res) => {
+const sendFile = (filePath, res) => {
   // Lese den Inhalt der Datei am angegebenen Pfad
-  fs.readFile(path, (err, data) => {
-    // Überprüfe auf Fehler beim Lesen der Datei
+  fs.readFile(filePath, (err, data) => {
     if (err) {
-      // Wenn ein Fehler auftritt, sende eine Fehlermeldung an den Client
-      res.end("Fehler beim Empfangen der Daten", err);
+      res.end("Interner Serverfehler");
       return;
     }
-    // Wenn der Pfad eine SVG-Datei ist, setze den Content-Type entsprechend
-    if (path.includes(".svg")) {
-      res.writeHead(200, { "Content-type": "image/svg+xml" });
+
+    // Bestimme den Inhaltstyp anhand der Dateierweiterung
+    const ext = path.extname(filePath).toLowerCase();
+    let contentType = "text/html"; // Standardmäßig HTML
+
+    if (ext === ".svg") {
+      contentType = "image/svg+xml";
+    } else if (ext === ".css") {
+      contentType = "text/css";
+    } else if (ext === ".ttf") {
+      contentType = "font/ttf"; //Fonts
     }
-    // Sende den Inhalt der Datei an den Client
+
+    // Setze den Antwortheader mit dem Inhaltsverzeichnis
+    res.writeHead(200, { "Content-Type": contentType });
+
     res.end(data);
   });
 };
@@ -26,30 +34,76 @@ const sendFile = (path, res) => {
 const requestHandler = (req, res) => {
   // Gib die URL der Anfrage in der Konsole aus
   console.log(req.url);
-  // Überprüfe die URL der Anfrage und handle sie entsprechend
-  if (req.url === "/") {
+
+  // Baue den Dateipfad für die angeforderte Datei
+  const filePath = `.${req.url}`;
+
+  // Behandle spezifische Pfade
+  if (filePath === "/" || filePath === "./index.html") {
     sendFile("./assets/index.html", res);
-  } else if (req.url === "/about") {
-    sendFile("./assets/about.html", res);
-  } else if (req.url === "/contact") {
-    sendFile("./assets/contact.html", res);
-  } else if (req.url === "/faq") {
-    sendFile("./assets/faq.html", res);
-  } else if (req.url === "/main.css") {
-    sendFile("./assets/main.css", res);
-  } else if (req.url.endsWith(".svg")) {
-    // Wenn die URL mit ".svg" endet, konstruiere den vollständigen Pfad und sende die Datei
-    const filePath = "./assets" + req.url;
-    sendFile(filePath, res);
+  } else if (
+    filePath === "./about_us.html" ||
+    filePath === "./categories.html" ||
+    filePath === "./how.html" ||
+    filePath === "./testimony.html"
+  ) {
+    sendFile(`./assets${req.url}`, res);
+  } else if (filePath === "./css/styles.css") {
+    sendFile("./assets/css/styles.css", res);
+  } else if (
+    filePath.startsWith("./img/") &&
+    (filePath.endsWith(".svg") || filePath.endsWith(".png"))
+  ) {
+    sendFile(`./assets${req.url}`, res);
+  } else if (
+    filePath.startsWith("../fonts/Nunito/") &&
+    filePath.endsWith(".ttf")
+  ) {
+    sendFile(`./assets${req.url}`, res);
   } else {
-    // Wenn keine passende URL gefunden wird, sende einen 404-Statuscode
-    res.writeHead(404);
-    res.end("Not Found");
+    // Wenn kein passender Pfad gefunden wird, sende den Statuscode 404
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Nicht gefunden");
   }
 };
 
 // Erstelle einen HTTP-Server und weise ihm die "requestHandler"-Funktion zu
 const server = http.createServer(requestHandler);
 
-// Lausche auf dem Port 9999 und gib eine Nachricht aus, wenn der Server gestartet ist
-server.listen(9999, () => console.log("Server funktioniert"));
+// Lausche auf dem Port 9898 und gib eine Nachricht aus, wenn der Server gestartet ist
+server.listen(9898, () =>
+  console.log("Server funktioniert auf http://localhost:9898/")
+);
+// !Version unten funktionier nur HOME, der rest nur zu die navigieren aber css wird nicht erkannt und svg auch nicht mehr
+
+// import http from "http";
+// import fs from "fs";
+
+// const sendFile = (path, res) => {
+//   fs.readFile(path, (err, data) => {
+//     if (err) {
+//       res.end("error");
+//     }
+//     if (path.includes(".svg")) {
+//       res.writeHead(200, { "Content-type": "image/svg+xml" });
+//     }
+//     res.end(data);
+//   });
+// };
+
+// const requestHandler = (req, res) => {
+//   console.log("Ein neuer Request: ", req.url, req.method);
+
+//   if (req.url === "/") {
+//     sendFile("./assets/index.html", res);
+//   } else {
+//     const filePath = "./assets" + req.url;
+//     sendFile(filePath, res);
+//   }
+// };
+
+// const server = http.createServer(requestHandler);
+
+// server.listen(9898, () => {
+//   console.log("test");
+// });
