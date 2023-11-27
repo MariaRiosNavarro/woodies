@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: nunito, helvetica, sans-serif, Arial;
+}
+
+@font-face {
+  font-family: nunito;
+  src: url("/assets/fonts/Nunito/static/Nunito-Regular.ttf");
+}
+
+@font-face {
+  font-family: nunito-bold;
+  src: url("/assets/fonts/Nunito/static/Nunito-Bold.ttf");
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.home-wrapper {
+  max-width: 100vw;
+  max-height: 100vh;
+  padding: 7rem;
+  background-color: #daa520;
+}
+
+/* Home */
+
+.extra-wrapper {
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0px 40px 80px 0px rgba(0, 0, 0, 0.25);
+  padding-bottom: 64px;
+  position: relative;
+}
+
+.left,
+.right {
+  width: 50%;
+}
+
+.left {
+  height: 100%;
+  min-height: 430px;
+}
+
+.table {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  max-height: 480px;
+  top: 8.5rem;
+}
+
+.color-right {
+  position: absolute;
+  height: 650px;
+  background-color: #f9bdbd;
+  right: 0;
+  top: 0;
+  border-radius: 0 0 0 100px;
+}
+
+.big-logo {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  right: 13rem;
+  top: 20rem;
+  stroke-width: 2px;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  padding: 24px 80px;
+  position: relative;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+  position: absolute;
+  right: 24px;
+}
+
+.title img {
+  padding-right: 8px;
+  height: 30px;
+  width: 30px;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.signup {
+  background-color: #f9bdbd;
+  padding: 9px 36px;
+  border-radius: 4px;
+  border: 1px solid #3e3f43;
+}
+
+.home-text {
+  padding-top: 126px;
+  padding-left: 102px;
+}
+
+.home-text h3 {
+  font-size: 36px;
+}
+
+.home-text h2 {
+  font-size: 62px;
+  width: 70%;
+}
+
+.home-text button {
+  border-radius: 4px;
+  background: #daa520;
+  color: #fff;
+  font-size: 16px;
+  padding: 14px 24px;
+  margin-top: 16px;
+  border: none;
+}
+
+.bold {
+  font-family: nunito-bold, helvetica, sans-serif, Arial;
+  font-weight: 800;
+}
+
+.selected {
+  color: #daa520;
+  font-family: nunito-bold, helvetica, sans-serif, Arial;
+  font-weight: 800;
+}
