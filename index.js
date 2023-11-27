@@ -55,11 +55,9 @@ const requestHandler = (req, res) => {
     (filePath.endsWith(".svg") || filePath.endsWith(".png"))
   ) {
     sendFile(`./assets${req.url}`, res);
-  } else if (
-    filePath.startsWith("../fonts/Nunito/") &&
-    filePath.endsWith(".ttf")
-  ) {
-    sendFile(`./assets${req.url}`, res);
+  } else if (filePath.startsWith("./fonts") || filePath.endsWith(".ttf")) {
+    console.log(filePath, "HIER!!");
+    sendFile(`./assets/fonts/Nunito/${req.url}`, res);
   } else {
     // Wenn kein passender Pfad gefunden wird, sende den Statuscode 404
     res.writeHead(404, { "Content-Type": "text/plain" });
