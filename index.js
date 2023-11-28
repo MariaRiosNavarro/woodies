@@ -38,7 +38,7 @@ const requestHandler = (req, res) => {
   const filePath = `.${req.url}`;
 
   // Behandle spezifische Pfade
-  if (filePath === "/" || filePath === "./index.html") {
+  if (filePath === "./" || filePath === "./index.html") {
     sendFile("./assets/index.html", res);
   } else if (
     filePath === "./about_us.html" ||

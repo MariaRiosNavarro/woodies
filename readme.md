@@ -5,10 +5,10 @@ aber Styles sind von allen Seiten nicht fertig
 
 Noch nicht Deploy
 
-# Desktop
+# Server 9898 works
 
 <div>
-<img src="./assets/img/readme1.png" alt="readme" width="300px">
+<img src="./assets/img/readme_server.png" alt="readme" width="300px">
 
 </div>
 
