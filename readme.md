@@ -1,9 +1,6 @@
-# WOODIES
+# WOODIES (Backend: server in Localhost)
 
-Server funktioniert mit svg, png, fonts und die navigation alle seiten,
-aber Styles sind von allen Seiten nicht fertig
-
-Noch nicht Deploy
+The server is capable of handling SVG, PNG, fonts, and navigation across all pages. However, styles have not been finalized for all pages. Not yet deployed.
 
 # Server 9898 works
 
